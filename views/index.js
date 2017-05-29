@@ -1,4 +1,3 @@
-// require('./renderer.js')
 const { remote, clipboard } = require('electron')
 const electronContextMenu = require('electron-context-menu')
 const YouTubePlayer = require('youtube-player')
@@ -6,9 +5,9 @@ const YouTubePlayer = require('youtube-player')
 const { BrowserWindow } = remote
 const currentWindow = BrowserWindow.fromId(remote.getCurrentWindow().id)
 
-// currentWindow.setAlwaysOnTop(true)
 
 let player = createPlayer()
+
 
 addControlListeners({
     playButton: document.querySelector('#play'),
