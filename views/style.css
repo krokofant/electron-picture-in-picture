@@ -25,6 +25,23 @@ textarea {
     display: none;
     border: none;
     z-index: 2;
+    background-color: rgba(171, 178, 183, 0.5);
+}
+
+.control:active {
+    background-color: rgba(220, 220, 220, 1);
+}
+
+.control.small {
+    width: 20px;
+    height: 20px;
+    border-radius: 20px;
+}
+
+.control.medium {
+    width: 35px;
+    height: 35px;
+    border-radius: 35px;
 }
 
 body:hover .control {
