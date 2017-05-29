@@ -1,8 +1,10 @@
 // require('./renderer.js')
-const remote = require('electron').remote
-const BrowserWindow = remote.BrowserWindow
-const currentWindow = BrowserWindow.fromId(remote.getCurrentWindow().id)
+const { remote, clipboard } = require('electron')
+const electronContextMenu = require('electron-context-menu')
 const YouTubePlayer = require('youtube-player')
+
+const { BrowserWindow } = remote
+const currentWindow = BrowserWindow.fromId(remote.getCurrentWindow().id)
 
 // currentWindow.setAlwaysOnTop(true)
 
@@ -13,6 +15,23 @@ addControlListeners({
     closeButton: document.querySelector('#close'),
     fitButton: document.querySelector('#fit'),
 })
+createContextMenu()
+
+function createContextMenu() {
+    electronContextMenu({
+        prepend: (params, browserWindow) => [{
+            label: 'Copy video URL',
+            // Only show it when right-clicking images
+            // visible: params.mediaType === 'image'
+            click: videoToClipboard
+        }]
+    })
+}
+
+async function videoToClipboard() {
+    let url = await player.getVideoUrl()
+    clipboard.writeText(url)
+}
 
 function createPlayer(video = 'EdFDJANJJLs') {
     return YouTubePlayer('player', {
