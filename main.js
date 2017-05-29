@@ -32,6 +32,18 @@ function createWindow() {
     // when you should delete the corresponding element.
     mainWindow = null
   })
+
+  mainWindow.webContents.on('crashed', function () {
+    // TODO: Implement
+  })
+
+  mainWindow.webContents.on('unresponsive', function () {
+    // TODO: Implement
+  })
+
+  process.on('uncaughtException', function () {
+    // TODO: Implement
+  })
 }
 
 // This method will be called when Electron has finished
